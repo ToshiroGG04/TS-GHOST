@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>TS GHOST — Script Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">TS</span><span>TS <b>GHOST</b><small>SCRIPT HUB</small></span></a>
+    <nav><a href="#library">Scripts</a><a href="#upload">Upload</a><a href="#account">Account</a></nav>
+    <div class="top-actions"><span id="session-label" class="muted">Not signed in</span><button id="auth-open" class="btn btn-outline">Login / Sign up</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><i></i> COMMUNITY SCRIPT PLATFORM</div>
+        <h1>ENTER THE<br><span>GHOST</span> NETWORK.</h1>
+        <p>Discover, publish and manage community scripts in one place. Built for creators, contributors and developers.</p>
+        <div class="hero-actions"><a class="btn btn-red" href="#library">Explore scripts</a><a class="btn btn-outline" href="#account">Join the community</a></div>
+      </div>
+      <div class="hero-panel"><div class="panel-top"><span>PLATFORM STATUS</span><span class="live-dot">● ONLINE</span></div><div class="panel-logo">TS<span>G</span></div><div class="panel-caption">CREATE · SHARE · BUILD</div><div class="stat-grid"><div><b id="stat-scripts">—</b><small>PUBLIC SCRIPTS</small></div><div><b id="stat-users">—</b><small>COMMUNITY</small></div><div><b id="stat-downloads">—</b><small>DOWNLOADS</small></div></div></div>
+    </section>
+
+    <section id="library" class="section">
+      <div class="section-heading"><div><div class="eyebrow">THE COLLECTION</div><h2>Script <span>Library</span></h2></div><div class="search-wrap"><input id="search" placeholder="Search scripts..." aria-label="Search scripts"><select id="category-filter"><option value="">All categories</option><option>Gaming</option><option>Tools</option><option>Utilities</option><option>Other</option></select></div></div>
+      <div id="script-list" class="script-grid"><div class="empty-state">Connect Supabase to load the library.</div></div>
+    </section>
+
+    <section id="upload" class="section split-section">
+      <div><div class="eyebrow">CONTRIBUTE</div><h2>Publish your<br><span>work.</span></h2><p class="muted">Signed-in members can submit an admin application. Approved admins and the developer can publish scripts.</p></div>
+      <form id="upload-form" class="surface form-card">
+        <h3>Upload a script</h3>
+        <label>Script title<input name="title" maxlength="90" required placeholder="e.g. Utility Pack"></label>
+        <label>Category<select name="category"><option>Gaming</option><option>Tools</option><option>Utilities</option><option>Other</option></select></label>
+        <label>Version<input name="version" maxlength="30" placeholder="1.0.0"></label>
+        <label>Description<textarea name="description" rows="3" maxlength="1200" required placeholder="What does your script do?"></textarea></label>
+        <label>File<input name="file" type="file" required></label>
+        <button class="btn btn-red full" type="submit">Upload script</button><p class="form-note" id="upload-note">Login required. Publishing access is limited to approved admins and the developer.</p>
+      </form>
+    </section>
+
+    <section id="account" class="section account-section">
+      <div><div class="eyebrow">YOUR ACCESS</div><h2>Account &<br><span>Permissions.</span></h2><p class="muted">Create an account, manage your profile and request admin access. The developer reviews every application.</p></div>
+      <div class="account-cards">
+        <div class="surface account-card"><h3>Your account</h3><div id="profile-view" class="muted">Sign in to view your account.</div><button id="logout" class="btn btn-outline" hidden>Sign out</button></div>
+        <div class="surface account-card"><h3>Admin application</h3><p class="muted">Apply to help manage and publish community content. Applications require developer approval.</p><form id="application-form"><label>Why do you want to be an admin?<textarea name="reason" rows="3" maxlength="1000" required></textarea></label><button class="btn btn-red full" type="submit">Submit application</button><p id="application-note" class="form-note"></p></form></div>
+        <div class="surface account-card" id="developer-tools" hidden><h3>Developer control room</h3><p class="muted">Review applications and moderate platform content.</p><div id="applications"></div></div>
+      </div>
+    </section>
+  </main>
+  <footer><span>© <span id="year"></span> TS GHOST</span><span>BLACK / RED EDITION · COMMUNITY PLATFORM</span></footer>
+
+  <dialog id="auth-dialog" class="auth-dialog"><form id="auth-form" method="dialog"><button type="button" id="auth-close" class="close">×</button><div class="eyebrow">WELCOME TO THE NETWORK</div><h2 id="auth-title">Sign in</h2><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" minlength="8" autocomplete="current-password" required></label><label id="username-wrap" hidden>Username<input name="username" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+" placeholder="ghost_user"></label><button class="btn btn-red full" id="auth-submit">Sign in</button><button type="button" class="text-button" id="auth-switch">Need an account? Sign up</button><p id="auth-note" class="form-note"></p></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
